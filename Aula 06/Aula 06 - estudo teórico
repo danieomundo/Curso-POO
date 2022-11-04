@@ -1,0 +1,238 @@
+Sobre os Pilares da POO: 
+
+Algumas bibliografias consideram os Pilares da POO: Encapsulamento, Herança e Polimorfismo.
+Outros consideram 4 pilares: Abstração, Encapsulamento, Herança e Polimorfismo.
+
+Na bibliografia deste curso defende-se o conceito de que Abstração faz parte do Encapsulamento.
+
+* ENCAPSULAMENTO * 
+Neste conceito, o objeto deve esconder seus dados e os detalhes de sua implementação. Ou seja, 
+um objeto não deve disponibilizar nada sobre si mesmo, exceto o que for absolutamente necessário 
+para que as outras partes do sistema funcionem. 
+
+Em outras palavras, um Software encapsulado protege o usuário do código e o código do usuário.
+
+Encapsular não é obrigatório, mas é uma boa prática para produzir Classes mais eficientes.
+
+Quando se encapsula, a primeira coisa a se fazer é tornar todos os atributos privado. 
+Proteger a parte interna para que usuário não possa mexer nos seus atributos.
+
+Vantagens do Encapsulamento:
+1) Tornar mudanças invisíveis
+2) Facilitar reutilização do código
+3) Reduzir efeitos colaterais
+
+Um bom objeto encapsulado possui uma interface bem definida.
+
+* INTERFACE *
+Interface é um tipo especial de classe que não possui implementação. Possui uma lista de serviços 
+fornecidos por um componente. 
+
+Uma interface não tem atributos, só tem métodos. 
+
+Na representação UML, usamos <<interface>> NomeDaInterface
+
+Exemplo: Um controle remoto.
+
+<<interface>>
+Controlador
+-------------------------
++ ligar()
++ desligar()
++ abrirMenu()
++ fecharMenu()
++ aumentarVolume()
++ diminuirVolume()
++ reproduzir()
++ pausar()
++ mute()
++ unmute()
+
+* MÉTODOS ABSTRATOS * 
+São métodos que não vão ser desenvolvidos na interface. Ou seja, não iremos escrever o código 
+dos métodos acima na Interface, só estamos dizendo que na Interface vai existir um método de 
+ligar, desligar etc. Em outras palavras, numa Interface eu não digo o que cada método vai fazer, 
+eu simplesmente digo que eu vou precisar desses métodos.
+
+Geralmente em uma Interface todos os métodos são definidos como public.
+
+Classe ControleRemoto implementando interface Controlador:
+
+ControleRemoto
+-------------------------------
+- volume
+- ligado
+- tocando
+--------------------------------
++ ligar()
++ desligar()
++ abrirMenu()
++ fecharMenu()
++ aumentarVolume()
++ diminuirVolume()
++ reproduzir()
++ pausar()
++ mute()
++ unmute()
+-------------------------------------
+
+Quando dizemos que a classe ControleRemoto vai implementar a interface Controlador, estamos 
+afirmando que a classe ControleRemoto vai ter como métodos os métodos abstratos que foram 
+definidos no Controlador (e ainda não implementados). E também vai ter os métodos adicionais 
+(getters e setters dos atributos da classe ControleRemoto).
+
+Ou seja:
+
+ControleRemoto
+-------------------------------
+- volume
+- ligado
+- tocando
+--------------------------------
++ ligar()
++ desligar()
++ abrirMenu()
++ fecharMenu()
++ aumentarVolume()
++ diminuirVolume()
++ reproduzir()
++ pausar()
++ mute()
++ unmute()
+       - setVolume()
+       - getVolume()
+       - setLigado()
+       - getLigado()
+       - setTocando()
+       - getTocando()
+-------------------------------------
+
+No exemplo acima foi deixado como public apenas a interface por escolha do professor, 
+mas poderia ser public sem problemas. 
+
+Algoritmo da Interface:
+
+interface Controlador
+// métodos abstratos
+public abstrato Metodo ligar()
+public abstrato Metodo desligar()
+public abstrato Metodo abrirMenu()
+public abstrato Metodo fecharMenu()
+public abstrato Metodo aumentarVolume()
+public abstrato Metodo diminuirVolume()
+public abstrato Metodo reproduzir()
+public abstrato Metodo pausar()
+public abstrato Metodo mute()
+public abstrato Metodo unmute()
+FimInterface
+
+Algoritmo da classe ControleRemoto implementando Controlador:
+
+classe ControleRemoto implementa Controlador  
+
+//atributos
+privado inteiro volume
+privado logico ligado
+privado logico tocando
+
+//métodos especiais
+publico Metodo Construtor()
+      volume = 50
+      ligado = falso
+      tocando = falso
+FimMetodo
+
+privado Metodo getVolume()
+      retorne volume
+FimMetodo
+
+privado Metodo setVolume(v: inteiro)
+       volume = v
+FimMetodo
+
+privado Metodo getLigado()
+      retorne ligado
+FimMetodo
+
+privado Metodo setLigado(l: logico)
+       ligado = l
+FimMetodo
+
+privado Metodo getTocando()
+      retorne tocando
+FimMetodo
+
+privado Metodo setTocando(t: logico)
+       tocando = t
+FimMetodo
+
+// sobrescrevendo os Métodos Abstratos:
+
+public Metodo ligar()
+// código do método
+     setLigado(verdadeiro)
+FimMetodo
+
+public Metodo desligar()
+// código do método
+     setLigado(falso)
+FimMetodo
+
+public Metodo abrirMenu()
+// código do método
+     Escreva(getLigado()) // mostra se tá ligado ou não
+     Escreva(getVolume()) // mostra volume
+     Para i=0 ate getVolume() passo 10 faca
+	Escreva("|") // pulando de 10 em 10 volumes, vai mostrando uma barrinha. veremos na prática.
+      FimPara
+      Escreva(getTocando()) // mostra se está reproduzindo ou não	
+FimMetodo
+
+public Metodo fecharMenu()
+// código do método
+     Escreva("Fechando Menu")
+FimMetodo
+
+public Metodo aumentarVolume()
+// código do método
+     se (getLigado()) entao //mesma coisa que se (getLigado(true)) 
+             setVolume(getVolume()+1)
+      FimSe
+FimMetodo
+
+public Metodo diminuirVolume()
+// código do método
+se (getLigado()) entao //mesma coisa que se (getLigado(true)) 
+             setVolume(getVolume()-1)
+      FimSe
+FimMetodo
+
+public Metodo reproduzir()
+// código do método
+      se (getLigado() e nao getTocando()) entao
+             setTocando(verdadeiro)
+       FimSe
+FimMetodo
+
+public Metodo pausar()
+// código do método
+      se (getLigado() e getTocando()) entao
+             setTocando(falso)
+       FimSe
+FimMetodo
+
+public Metodo mute()
+// código do método
+     se (getLigado() e getVolume()>0) entao
+	setVolume(0)
+      FimSe	
+FimMetodo
+
+public Metodo unmute()
+// código do método
+      se (getLigado() e getVolume()=0) entao
+	setVolume(50)
+      FimSe	
+FimMetodo
+
+FimClasse
