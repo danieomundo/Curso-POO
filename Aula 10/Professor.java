@@ -1,26 +1,26 @@
 package aula10;
 
-public class Funcionario extends Pessoa {
+public class Professor extends Pessoa {
     
-    private String setor;
-    private boolean trabalhando;
-        
-    public void setSetor(String set){
-        this.setor = set;
+    private String especialidade;
+    private double salario;
+    
+    public String getEspecialidade() {
+        return this.especialidade;
     }
-    
-    public String getSetor(){
-        return this.setor;
+
+    public void setEspecialidade(String es) {
+        this.especialidade = es;
     }
-    
-    public void setTrabalhando(boolean tr){
-        this.trabalhando = tr;
+
+    public double getSalario() {
+        return this.salario;
     }
-    
-    public boolean getTrabalhando(){
-        return this.trabalhando;
+
+    public void setSalario(double sal) {
+        this.salario = sal;
     }
-    
-    public void mudarTrabalho(){}
+   
+    public void receberAum(){}
     
 }
