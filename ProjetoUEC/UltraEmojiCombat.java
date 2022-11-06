@@ -1,4 +1,4 @@
-package aula07.UltraEmojiCombat;
+package ProjetoUEC;
 
 public class UltraEmojiCombat {
     
