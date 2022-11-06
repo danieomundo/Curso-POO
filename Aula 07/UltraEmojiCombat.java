@@ -13,11 +13,15 @@ public class UltraEmojiCombat {
             l[4] = new Lutador("UF0Cobol", "Brasil", 37, 1.70f, 119.3f, 5, 4, 3);
             l[5] = new Lutador("Nerdaart", "EUA", 30, 1.81f, 105.7f, 12, 2, 4);
             
-            l[4].status();
-            //l[3].setPeso(110.0f);
-            l[3].status();
-            l[2].ganharLuta();
-            l[2].status();
+            /*
+            Luta UEC01 = new Luta();  
+            UEC01.marcarLuta(l[2],l[3]);
+            UEC01.lutar(l[2], l[3]);
+            */
+            
+            Luta UEC02 = new Luta();
+            UEC02.marcarLuta(l[0],l[1]);
+            UEC02.lutar(l[0],l[1]);
             
         }
 }
