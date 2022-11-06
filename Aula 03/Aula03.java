@@ -12,14 +12,13 @@ public class Aula03 {
         //c1.tampada = true; // não é possível modificar diretamente um atributo ou método privado.
         c1.status(); 
        
-        c1.tampar();
         c1.destampar();
         
         /*
         
-        Observe que conseguimos tampar() ou destampar() porque, embora o atributo tampada esteja como 
-        privado, eu estou acessando o método destampar(), e é ele quem está acessando o atributo. E, 
-        inclusive, esse método está na mesma Classe do atributo. Logo, ele pode modificar o atributo. 
+        Observe que conseguimos destampar() porque, embora o atributo tampada esteja como privado, 
+        eu estou acessando o método destampar(), e é ele quem está acessando o atributo. Inclusive, 
+        esse método está na mesma Classe do atributo. Logo, ele pode modificar o atributo. 
         
         Para ilustrar melhor esse conceito de modificador PRIVATE, imagine que você foi ao Supermercado 
         comprar um controle remoto que custa 40,00. Você chega no Caixa, dá uma nota de 50,00 e a pessoa 
