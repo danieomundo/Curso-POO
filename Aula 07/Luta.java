@@ -1,5 +1,5 @@
 package aula07.UltraEmojiCombat;
-import java.util.*;
+import java.util.Random;
 
 public class Luta {
     
@@ -10,95 +10,104 @@ public class Luta {
     private boolean aprovada;
     
     // métodos
-  
     public void marcarLuta(Lutador l1, Lutador l2){
-        if ((l1.getCategoria() == l2.getCategoria()) && l1!=l2){ // se forem da mesma categoria e l1 diferente de l2
-            this.setAprovada(true); // vai aprovar e a luta pode acontecer
+        if (l1.getCategoria().equals(l2.getCategoria()) && l1!=l2){
+            this.aprovada = true;
             this.desafiado = l1;
             this.desafiante = l2;
         } else {
-            System.out.println("Impossível lutar. Consulte as regras."); // se nao satisfazer as regras de serem da mesma categoria e lutadores diferentes
-            this.setAprovada(false); // nao vai aprovar e a luta nao vai poder acontecer
+            this.aprovada = false;
             this.desafiado = null;
             this.desafiante = null;
         }       
     }
     
-    public void lutar(Lutador l1, Lutador l2){
+    public void lutar(){
         
         Random random = new Random(); // gerar números aleatórios
         
-        if (this.getAprovada()){ 
-  
+        if (this.aprovada){
+            
+            System.out.println("# # #  DESAFIADO  # # #");
             this.desafiado.apresentar();
+            System.out.println("# # #  DESAFIANTE  # # #");
             this.desafiante.apresentar();
             
-            int vencedor = random.nextInt(3); // vencedor recebe número aleatório entre 0 e 2
+            int vencedor = random.nextInt(3); // vai gerar número aleatório entre 0 e 2
             
-            switch (vencedor){  
+            System.out.println("= = = = = = = = = = = = = = = = = = = = = = =");
+            System.out.println("                   RESULTADO                 ");
+            System.out.println("= = = = = = = = = = = = = = = = = = = = = = =");
+            System.out.println();
+            
+            switch (vencedor){
             
                 case 0:
                     System.out.println("EMPATE!!!");
-                    l1.empatarLuta();
-                    l2.empatarLuta(); 
+                    this.desafiado.empatarLuta();
+                    this.desafiante.empatarLuta(); 
                     break;
                   
                 case 1:
-                    System.out.println("Lutador " + l1.getNome() + " venceu!");
-                    l1.ganharLuta();
-                    l2.perderLuta();               
+                    System.out.println("Vitória do " + this.desafiado.getNome() + "!");
+                    this.desafiado.ganharLuta();
+                    this.desafiante.perderLuta();               
                     break;
                     
                 case 2:    
-                    System.out.println("Lutador " + l2.getNome() + " venceu!");
-                    l2.ganharLuta();
-                    l1.perderLuta();
+                    System.out.println("Vitória do " + this.desafiante.getNome() + "!");
+                    this.desafiante.ganharLuta();
+                    this.desafiado.perderLuta();
                     break;
             }
             
             System.out.println();
-            System.out.println("ATUALIZAÇÃO DEPOIS DA LUTA:");
+            System.out.println("= = = = = = = = = = = = = = = = = = = = = = =");
+            System.out.println("            ATUALIZAÇÃO DO PLACAR            ");
+            System.out.println("= = = = = = = = = = = = = = = = = = = = = = =");
             System.out.println();
-            l1.status();
-            l2.status();     
+            this.desafiado.status();
+            System.out.println();
+            this.desafiante.status();     
+            System.out.println();            
             
         } else {
-            System.out.println("Impossível lutar!");        
+            System.out.println("A luta não pode acontecer! Consulte as regras.");        
         }
     }
                    
     // métodos especiais
     
     public void setDesafiado(Lutador dd){
-        desafiado = dd;
+        this.desafiado = dd;
     }
     
     public Lutador getDesafiado(){
-        return desafiado;
+        return this.desafiado;
     }
 
     public void setDesafiante(Lutador ds){
-        desafiante = ds;
+        this.desafiante = ds;
     }
 
     public Lutador getDesafiante(){
-        return desafiante;
+        return this.desafiante;
     }
 
     public void setRounds(int r){
-        rounds = r;
+        this.rounds = r;
     }
     
     public int getRounds(){
-        return rounds;
+        return this.rounds;
     }
     
     public void setAprovada(boolean ap){
-        aprovada = true;
+        this.aprovada = true;
     }
     
     public boolean getAprovada(){
-        return aprovada;
+        return this.aprovada;
     }
     
 }
