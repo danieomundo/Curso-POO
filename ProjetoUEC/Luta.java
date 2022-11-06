@@ -1,4 +1,4 @@
-package aula07.UltraEmojiCombat;
+package ProjetoUEC;
 import java.util.Random;
 
 public class Luta {
@@ -28,9 +28,9 @@ public class Luta {
         
         if (this.aprovada){
             
-            System.out.println(" # # #  DESAFIADO  # # # ");
+            System.out.println("# # #  DESAFIADO  # # #");
             this.desafiado.apresentar();
-            System.out.println(" # # #  DESAFIANTE  # # # ");
+            System.out.println("# # #  DESAFIANTE  # # #");
             this.desafiante.apresentar();
             
             int vencedor = random.nextInt(3); // vai gerar número aleatório entre 0 e 2
